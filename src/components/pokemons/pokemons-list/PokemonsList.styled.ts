@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const PokemonsListWrapper = styled.div`
+type PokemonsListWrapperProps = {
+  x?: number;
+};
+
+export const PokemonsListWrapper = styled.div<PokemonsListWrapperProps>`
   display: flex;
   justify-content: center;
   background-color: #efefef;
@@ -11,6 +15,22 @@ export const PokemonsListWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
+
+  ${({ x }) => {
+    if (x! > 8) {
+      return css`
+        .pokemons {
+          background-color: red;
+        }
+      `;
+    } else {
+      return css`
+        .pokemons {
+          background-color: blue;
+        }
+      `;
+    }
+  }}
 `;
 
 export const PokemonsListItemWrapper = styled.div`

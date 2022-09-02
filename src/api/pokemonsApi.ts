@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { api } from "../lib/axios";
 
 export type IPokemonsList = {
@@ -12,12 +13,10 @@ export type IPokemon = {
   url: string;
 };
 
-export const fetchPokemons = async () => {
-  try {
-    const { data } = await api.get<IPokemonsList>("/pokemon");
+export type IPokemonError = AxiosError;
 
-    return data;
-  } catch (e) {
-    throw new Error("Oop's something went wrong");
-  }
+export const fetchPokemons = async () => {
+  const { data } = await api.get<IPokemonsList>("/pokemon");
+
+  return data;
 };
